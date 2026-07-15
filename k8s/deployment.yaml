@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ibm-cicd-demo
+  labels:
+    app: ibm-cicd-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ibm-cicd-demo
+  template:
+    metadata:
+      labels:
+        app: ibm-cicd-demo
+    spec:
+      containers:
+        - name: ibm-cicd-demo
+          image: vamandeshmukh/ibm-cicd-demo:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: APP_VERSION
+              value: "1.0.0"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 5
