@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/health', (req, res) => {
-  console.log("added log in server.js")
+  console.log("added log in server.js 2")
   console.log(req);
   res.json({ status: 'UP' });
 });
